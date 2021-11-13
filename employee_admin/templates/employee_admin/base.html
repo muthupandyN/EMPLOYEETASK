@@ -1,0 +1,89 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'employee_admin/plugins/fontawesome-free/css/all.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'employee_admin//plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}   ">
+
+<link rel="stylesheet" href="{% static 'employee_admin/dist/css/adminlte.min.css' %}">
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+  <div class="wrapper">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown pt-3">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            {% if user.is_authenticated %}
+
+               
+                      Welcome, {{user.username	}}
+                      {% endif %}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'admin_logout' %}"><i class="fa fa-power-off pr-3"></i> Log Out</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+     
+      <a href="#" class="brand-link">
+
+        <span class="brand-text font-weight-light">Ciphercode</span>
+      </a>
+      <div class="sidebar">
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+              <a href="{% url 'admin_employee' %}" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Employee
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'employee_list'%}" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Employee List
+                </p>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </aside>
+    <div class="content-wrapper">
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+          </div>
+             {% block content %} {% endblock%}
+        </div>
+      </div>
+    </div>
+
+
+    <aside class="control-sidebar control-sidebar-dark">
+    </aside>
+
+  </div>
+
+  <script src="{% static 'employee_admin/plugins/jquery/jquery.min.js' %}"></script>
+
+  <script src="{% static 'employee_admin/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <script src="{% static 'employee_admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script>
+  <script src="{% static 'employee_admin/js/jquery.validate.min.js' %}"></script>
+
+ 
+</body>
