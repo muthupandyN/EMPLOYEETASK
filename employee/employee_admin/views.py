@@ -77,6 +77,34 @@ def employeeDelete(request):
 
     return redirect('employee_list')
 
+def employeeSearch(request):
+
+    employee_name =  request.POST.get('employee_name')
+    print(type(employee_name))
+    if(employee_name.isalpha()):
+        
+        emp_obj = EmpTable.objects.filter(employee_name__icontains=employee_name)
+        # print(emp_obj)
+        
+        context = {
+            "emp_datas":emp_obj
+        }
+        return render(request,'employee_admin/employeesearch.html',context)
+    
+    elif(employee_name. isalnum()):
+        id =int(employee_name)
+        emp_obj = EmpTable.objects.filter(id=id)
+        # print(emp_obj)
+        
+        context = {
+            "emp_datas":emp_obj
+        }
+        return render(request,'employee_admin/employeesearch.html',context)
+
+    else:
+        return redirect('employee_list')    
+
+
 
 
      

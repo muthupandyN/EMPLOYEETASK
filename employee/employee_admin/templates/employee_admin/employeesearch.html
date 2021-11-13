@@ -1,0 +1,84 @@
+{% extends "employee_admin/base.html" %}
+{% block content %}
+
+<h2>Employee List</h2>
+<form action="{% url 'emp_search'%}" method="post">
+  {% csrf_token %}
+<div class="input-group">
+  <input type="text" name="employee_name" class="form-control rounded" placeholder="Search" aria-label="Search"
+  aria-describedby="search-addon" />
+  <button type="submit" class="btn btn-outline-primary">search</button>
+</div>
+</form>
+<hr>
+<hr>
+<div class="col-md-12">
+     
+  {% for message in messages %}
+
+  <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Success</strong> {{message}}
+  </div>
+
+  {% endfor %}
+    
+    <table id="example1" class="table table-bordered table-striped">
+          <thead>
+             <tr>
+             <th>Id</th>
+             <th>Employee Name</th>
+             <th>Email</th>
+             <th>Action</th>
+             </tr>
+          </thead>
+            <tbody>
+                {% if emp_datas %}
+                {% for data in emp_datas%}
+                    <tr>  
+                         <td>{{data.id}}</td>  
+                         <td>{{data.employee_name}}</td>  
+                         <td>{{data.employee_email}}</td>
+                        
+                         
+                        <td>
+                         <a href="{% url 'employee_update' %}?id={{ data.id }}" ><i class="fa fa-pencil-square-o font-16 text-black font-300"></i></a>
+                         <a href="{% url 'emp_delte' %}?id={{ data.id }}"><i class="fa fa-times-circle font-16 text-danger font-300"></i></a>
+    
+                    </td>    
+                    </tr>
+                    {% endfor %}
+                   {% endif %}
+                    
+                   
+                    <tr>  
+                         <td colspan="5">Employee not found</td>  
+                    </tr>  
+             
+            
+             </tbody>
+            
+       </table>
+    
+    </div>
+     <script>
+         
+         $(function () {
+        $('#example1').DataTable()
+        
+      })
+    </script> 
+    <script type="text/javascript">
+      $(document).ready(function() {
+  
+  
+  
+          window.setTimeout(function() {
+              $(".alert").fadeTo(1000, 0).slideUp(1000, function() {
+                  $(this).remove();
+              });
+          }, 5000);
+  
+      });
+  </script>
+{% endblock %}
