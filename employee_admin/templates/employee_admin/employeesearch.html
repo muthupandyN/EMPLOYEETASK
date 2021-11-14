@@ -33,7 +33,7 @@
              </tr>
           </thead>
             <tbody>
-                {% if emp_datas %}
+               
                 {% for data in emp_datas%}
                     <tr>  
                          <td>{{data.id}}</td>  
@@ -47,14 +47,15 @@
     
                     </td>    
                     </tr>
-                    {% endfor %}
-                   {% endif %}
-                    
                    
+                   {{emp_datas}}
+                    
+                   {% empty %}
                     <tr>  
                          <td colspan="5">Employee not found</td>  
                     </tr>  
-             
+                    {% endfor %}
+                   
             
              </tbody>
             
